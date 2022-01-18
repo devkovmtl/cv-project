@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PersonalInformation } from './containers';
+import { Education, PersonalInformation, WorkExperience } from './containers';
 
 class App extends Component {
   render() {
@@ -11,6 +11,14 @@ class App extends Component {
 
         <div>
           <PersonalInformation />
+        </div>
+
+        <div>
+          <WorkExperience />
+        </div>
+
+        <div>
+          <Education />
         </div>
       </div>
     );
