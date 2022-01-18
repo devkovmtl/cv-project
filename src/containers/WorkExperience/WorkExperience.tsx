@@ -21,52 +21,47 @@ class WorkExperience extends Component {
   render() {
     const { position, employer, taskDescription, from, until } = this.state;
     return (
-      <div>
-        <h2>Work Experience</h2>
-        <div>
-          <form>
-            <InputField
-              type='text'
-              placeholder='Position'
-              name='position'
-              value={position}
-              handleChange={this.handleChange}
-            />
+      <form className='work_experience_form'>
+        <InputField
+          type='text'
+          placeholder='Position'
+          name='position'
+          value={position}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='text'
-              placeholder='Employer'
-              name='employer'
-              value={employer}
-              handleChange={this.handleChange}
-            />
+        <InputField
+          type='text'
+          placeholder='Employer'
+          name='employer'
+          value={employer}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='text'
-              placeholder='From'
-              name='from'
-              value={from}
-              handleChange={this.handleChange}
-            />
+        <InputField
+          type='text'
+          placeholder='From'
+          name='from'
+          value={from}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='text'
-              placeholder='Until'
-              name='until'
-              value={until}
-              handleChange={this.handleChange}
-            />
+        <InputField
+          type='text'
+          placeholder='Until'
+          name='until'
+          value={until}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='textarea'
-              placeholder='Employer'
-              name='taskDescription'
-              value={taskDescription}
-              handleChange={this.handleChange}
-            />
-          </form>
-        </div>
-      </div>
+        <InputField
+          type='textarea'
+          placeholder='Employer'
+          name='taskDescription'
+          value={taskDescription}
+          handleChange={this.handleChange}
+        />
+      </form>
     );
   }
 }

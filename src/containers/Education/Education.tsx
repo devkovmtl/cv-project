@@ -21,44 +21,39 @@ class Education extends Component {
     const { degree, schoolName, from, until } = this.state;
 
     return (
-      <div className='education'>
-        <h2>Education</h2>
-        <div>
-          <form>
-            <InputField
-              type='text'
-              placeholder='Your degree'
-              name='degree'
-              value={degree}
-              handleChange={this.handleChange}
-            />
+      <form className='education_form'>
+        <InputField
+          type='text'
+          placeholder='Your degree'
+          name='degree'
+          value={degree}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='text'
-              placeholder='School Name'
-              name='schoolName'
-              value={schoolName}
-              handleChange={this.handleChange}
-            />
+        <InputField
+          type='text'
+          placeholder='School Name'
+          name='schoolName'
+          value={schoolName}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='date'
-              placeholder='From'
-              name='from'
-              value={from}
-              handleChange={this.handleChange}
-            />
+        <InputField
+          type='date'
+          placeholder='From'
+          name='from'
+          value={from}
+          handleChange={this.handleChange}
+        />
 
-            <InputField
-              type='date'
-              placeholder='until'
-              name='until'
-              value={until}
-              handleChange={this.handleChange}
-            />
-          </form>
-        </div>
-      </div>
+        <InputField
+          type='date'
+          placeholder='until'
+          name='until'
+          value={until}
+          handleChange={this.handleChange}
+        />
+      </form>
     );
   }
 }
