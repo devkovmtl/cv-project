@@ -64,15 +64,6 @@ function WorkExperience({
         handleChange={handleChange}
         dataCategory='workExperience'
       />
-
-      <InputField
-        type='textarea'
-        placeholder='Employer'
-        name='taskDescription'
-        value={taskDescription}
-        handleChange={handleChange}
-        dataCategory='workExperience'
-      />
     </form>
   );
 }
