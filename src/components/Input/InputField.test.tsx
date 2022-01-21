@@ -12,6 +12,7 @@ describe('<Input />', () => {
         name='name'
         value=''
         handleChange={handler}
+        dataCategory='test'
       />
     );
 
@@ -30,6 +31,7 @@ describe('<Input />', () => {
         name='name'
         value=''
         handleChange={handler}
+        dataCategory='test'
       />
     );
 

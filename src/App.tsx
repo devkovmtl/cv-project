@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { AppState } from './type';
+import {
+  AppState,
+  EducationType,
+  PersonalInformationType,
+  WorkExperienceType,
+} from './type';
 import { Education, PersonalInformation, WorkExperience } from './containers';
 import { SubHeader } from './components';
 import { getItemCategoryName } from './utils';
@@ -10,7 +15,6 @@ const initialState = {
   personalInformation: {
     fname: '',
     lname: '',
-    picture: '',
     address: '',
     phoneNumer: '',
     email: '',
@@ -28,27 +32,21 @@ class App extends Component {
     const workId = uuidv4();
     this.setState((prevState: AppState) => ({
       ...prevState,
-      education: [
-        ...prevState.education,
-        {
-          id: educationId,
-          degree: '',
-          schoolName: '',
-          from: '',
-          until: '',
-        },
-      ],
-      workExperience: [
-        ...prevState.workExperience,
-        {
-          id: workId,
-          position: '',
-          employer: '',
-          taskDescription: '',
-          from: '',
-          until: '',
-        },
-      ],
+      education: prevState.education.concat({
+        id: educationId,
+        degree: '',
+        schoolName: '',
+        from: '',
+        until: '',
+      }),
+      workExperience: prevState.workExperience.concat({
+        id: workId,
+        position: '',
+        employer: '',
+        taskDescription: '',
+        from: '',
+        until: '',
+      }),
     }));
   }
 
@@ -110,8 +108,76 @@ class App extends Component {
     }
   };
 
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target as {
+      name: keyof PersonalInformationType;
+      value: string;
+    };
+    const { personalInformation } = this.state;
+    const currentPersoInfo = personalInformation;
+    currentPersoInfo[name] = value;
+    this.setState((prevState: AppState) => ({
+      ...prevState,
+      personalInformation: currentPersoInfo,
+    }));
+  };
+
+  handleArrayInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const category = e.target.getAttribute('data-category');
+    const parentId = (e.target as Element).closest(`div`)?.id;
+    const { name, value } = e.target;
+    const { workExperience, education } = this.state;
+
+    if (category === itemName.workExperience) {
+      const index = workExperience.findIndex((el) => el.id === parentId);
+      if (index === -1) {
+        return;
+      } else {
+        const currentWorkInfo = workExperience[index];
+        currentWorkInfo[name as keyof WorkExperienceType] = value;
+        this.setState((prevState: AppState) => ({
+          ...prevState,
+          workExperience: [
+            ...prevState.workExperience.slice(0, index),
+            currentWorkInfo,
+            ...prevState.workExperience.slice(index + 1),
+          ],
+        }));
+      }
+    }
+
+    if (category === itemName.education) {
+      const index = education.findIndex((el) => el.id === parentId);
+      if (index === -1) {
+        return;
+      } else {
+        const currentEducation = education[index];
+        currentEducation[name as keyof EducationType] = value;
+        this.setState((prevState: AppState) => ({
+          ...prevState,
+          education: [
+            ...prevState.education.slice(0, index),
+            currentEducation,
+            ...prevState.education.slice(index + 1),
+          ],
+        }));
+      }
+    }
+  };
+
   render() {
-    const { education, workExperience } = this.state;
+    const {
+      education,
+      workExperience,
+      personalInformation: {
+        fname,
+        lname,
+        address,
+        description,
+        email,
+        phoneNumer,
+      },
+    } = this.state;
     return (
       <div className=''>
         <header className=''>
@@ -120,7 +186,15 @@ class App extends Component {
 
         <div>
           <SubHeader title='Personal Information' />
-          <PersonalInformation />
+          <PersonalInformation
+            fname={fname}
+            lname={lname}
+            address={address}
+            description={description}
+            email={email}
+            phoneNumer={phoneNumer}
+            handleChange={this.handleInputChange}
+          />
         </div>
 
         <div>
@@ -133,26 +207,35 @@ class App extends Component {
               ➕
             </button>
           )}
-          {workExperience.map((el) => {
-            return (
-              <div key={el.id} id={el.id}>
-                <WorkExperience />
+          {workExperience.map(
+            ({ id, employer, position, taskDescription, until, from }) => {
+              return (
+                <div key={id} id={id} className='work-experience-container'>
+                  <WorkExperience
+                    employer={employer}
+                    position={position}
+                    taskDescription={taskDescription}
+                    from={from}
+                    until={until}
+                    handleChange={this.handleArrayInputChange}
+                  />
 
-                <button
-                  className='add_work_experience_btn'
-                  onClick={this.handleAddItem}
-                >
-                  ➕
-                </button>
-                <button
-                  className='delete_work_experience_btn'
-                  onClick={this.handleDeleteItem}
-                >
-                  ❌
-                </button>
-              </div>
-            );
-          })}
+                  <button
+                    className='add_work_experience_btn'
+                    onClick={this.handleAddItem}
+                  >
+                    ➕
+                  </button>
+                  <button
+                    className='delete_work_experience_btn'
+                    onClick={this.handleDeleteItem}
+                  >
+                    ❌
+                  </button>
+                </div>
+              );
+            }
+          )}
         </div>
 
         <div>
@@ -162,10 +245,16 @@ class App extends Component {
               ➕
             </button>
           )}
-          {education.map((el, i) => {
+          {education.map(({ id, until, from, degree, schoolName }) => {
             return (
-              <div key={el.id} id={el.id}>
-                <Education />
+              <div key={id} id={id}>
+                <Education
+                  degree={degree}
+                  schoolName={schoolName}
+                  from={from}
+                  until={until}
+                  handleChange={this.handleArrayInputChange}
+                />
                 <button
                   className='add_education_btn'
                   onClick={this.handleAddItem}

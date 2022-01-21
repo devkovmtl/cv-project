@@ -1,7 +1,6 @@
 export type PersonalInformationType = {
   fname: string;
   lname: string;
-  picture: string;
   address: string;
   phoneNumer: string;
   email: string;

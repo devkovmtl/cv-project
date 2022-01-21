@@ -5,7 +5,8 @@ type InputFieldProps = {
   name: string;
   type: string;
   value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  dataCategory: string;
 };
 
 function InputField({
@@ -14,6 +15,7 @@ function InputField({
   type,
   value,
   handleChange,
+  dataCategory,
 }: InputFieldProps) {
   return (
     <input
@@ -21,8 +23,9 @@ function InputField({
       type={type}
       name={name}
       value={value}
-      onChange={(e) => handleChange(e, name)}
+      onChange={handleChange}
       className=''
+      data-category={dataCategory}
     />
   );
 }
