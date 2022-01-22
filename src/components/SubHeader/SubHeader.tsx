@@ -3,7 +3,7 @@ type HeaderProps = {
 };
 
 function Header({ title }: HeaderProps) {
-  return <h2>{title}</h2>;
+  return <h2 className='text-2xl font-semibold text-left py-3'>{title}</h2>;
 }
 
 export default Header;

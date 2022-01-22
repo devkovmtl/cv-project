@@ -7,7 +7,9 @@ type WorkExperienceProps = {
   taskDescription: string;
   from: string;
   until: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 };
 
 function WorkExperience({
@@ -39,15 +41,6 @@ function WorkExperience({
       />
 
       <InputField
-        type='textarea'
-        placeholder='Task Description'
-        name='taskDescription'
-        value={taskDescription}
-        handleChange={handleChange}
-        dataCategory='workExperience'
-      />
-
-      <InputField
         type='text'
         placeholder='From'
         name='from'
@@ -61,6 +54,15 @@ function WorkExperience({
         placeholder='Until'
         name='until'
         value={until}
+        handleChange={handleChange}
+        dataCategory='workExperience'
+      />
+
+      <InputField
+        type='textarea'
+        placeholder='Task Description'
+        name='taskDescription'
+        value={taskDescription}
         handleChange={handleChange}
         dataCategory='workExperience'
       />

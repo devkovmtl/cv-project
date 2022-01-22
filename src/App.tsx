@@ -114,7 +114,9 @@ class App extends Component {
     }
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target as {
       name: keyof PersonalInformationType;
       value: string;
@@ -128,7 +130,9 @@ class App extends Component {
     }));
   };
 
-  handleArrayInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleArrayInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const category = e.target.getAttribute('data-category');
     const parentId = (e.target as Element).closest(`div`)?.id;
     const { name, value } = e.target;
@@ -186,15 +190,15 @@ class App extends Component {
       },
     } = this.state;
     return (
-      <div className=''>
-        <header className='text-3xl font-bold underline'>
-          <h1>CV PROJECT</h1>
+      <div className='min-h-screen bg-slate-100'>
+        <header className='text-6xl font-bold uppercase text-center py-8'>
+          <h1>Resume Maker</h1>
         </header>
         {/* APP CONTAINER */}
-        <div className=''>
+        <div className='flex flex-col lg:flex-row lg:justify-evenly '>
           {/* FORM COLUMN */}
           <div>
-            <div>
+            <div className='card-form'>
               <SubHeader title='Personal Information' />
               <PersonalInformation
                 fname={fname}
@@ -208,7 +212,7 @@ class App extends Component {
               />
             </div>
 
-            <div>
+            <div className='card-form'>
               <SubHeader title='Work Experience' />
               {workExperience.length === 0 && (
                 <button
@@ -249,7 +253,7 @@ class App extends Component {
               )}
             </div>
 
-            <div>
+            <div className='card-form'>
               <SubHeader title='Education' />
               {education.length === 0 && (
                 <button
@@ -261,7 +265,7 @@ class App extends Component {
               )}
               {education.map(({ id, until, from, degree, schoolName }) => {
                 return (
-                  <div key={id} id={id}>
+                  <div key={id} id={id} className=''>
                     <Education
                       degree={degree}
                       schoolName={schoolName}
@@ -288,7 +292,7 @@ class App extends Component {
           </div>
 
           {/* PREVIEW COLUMN */}
-          <div>
+          <div className='card-preview'>
             <Preview
               personalInformation={this.state.personalInformation}
               education={this.state.education}

@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+}
+
+@layer components {
+  .card-form {
+    @apply mb-4 px-6 pt-8 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg sm:max-w-md sm:px-10;
+  }
+
+  .card-preview {
+    @apply mb-4 px-6 pt-8 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 min-w-[760px] rounded-lg;
+  }
 }

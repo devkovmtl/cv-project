@@ -6,7 +6,9 @@ type EducationProps = {
   schoolName: string;
   from: string;
   until: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 };
 
 function Education({

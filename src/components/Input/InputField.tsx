@@ -5,7 +5,9 @@ type InputFieldProps = {
   name: string;
   type: string;
   value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   dataCategory: string;
 };
 
@@ -17,14 +19,23 @@ function InputField({
   handleChange,
   dataCategory,
 }: InputFieldProps) {
-  return (
+  return type === 'textarea' ? (
+    <textarea
+      placeholder={placeholder}
+      name={name}
+      value={value}
+      onChange={handleChange}
+      className='w-full my-1 max-w-md rounded-md'
+      data-category={dataCategory}
+    />
+  ) : (
     <input
       placeholder={placeholder}
       type={type}
       name={name}
       value={value}
       onChange={handleChange}
-      className=''
+      className='w-full my-1 max-w-md rounded-md'
       data-category={dataCategory}
     />
   );

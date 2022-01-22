@@ -9,7 +9,9 @@ type PersonalInformationProps = {
   phoneNumer: string;
   description: string;
   title: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 };
 
 function PersonalInformation({
