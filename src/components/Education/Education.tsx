@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { InputField } from '../../components';
+import React from 'react';
+import { InputField } from '..';
 
 type EducationProps = {
   degree: string;

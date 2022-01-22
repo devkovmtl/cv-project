@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Education } from '../';
+import Education from './Education';
 
 describe('<Education />', () => {
   // test('should render', () => {

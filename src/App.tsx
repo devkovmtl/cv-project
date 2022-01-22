@@ -6,8 +6,12 @@ import {
   PersonalInformationType,
   WorkExperienceType,
 } from './type';
-import { Education, PersonalInformation, WorkExperience } from './containers';
-import { SubHeader } from './components';
+import {
+  SubHeader,
+  Education,
+  PersonalInformation,
+  WorkExperience,
+} from './components';
 import { getItemCategoryName } from './utils';
 import { itemName } from './enum';
 
