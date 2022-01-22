@@ -187,7 +187,7 @@ class App extends Component {
     } = this.state;
     return (
       <div className=''>
-        <header className=''>
+        <header className='text-3xl font-bold underline'>
           <h1>CV PROJECT</h1>
         </header>
         {/* APP CONTAINER */}
