@@ -24,6 +24,7 @@ const initialState = {
     phoneNumer: '',
     email: '',
     description: '',
+    title: '',
   },
   education: [],
   workExperience: [],
@@ -181,6 +182,7 @@ class App extends Component {
         description,
         email,
         phoneNumer,
+        title,
       },
     } = this.state;
     return (
@@ -201,6 +203,7 @@ class App extends Component {
                 description={description}
                 email={email}
                 phoneNumer={phoneNumer}
+                title={title}
                 handleChange={this.handleInputChange}
               />
             </div>

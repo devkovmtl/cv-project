@@ -5,6 +5,7 @@ export type PersonalInformationType = {
   phoneNumer: string;
   email: string;
   description: string;
+  title: string;
 };
 
 export type EducationType = {

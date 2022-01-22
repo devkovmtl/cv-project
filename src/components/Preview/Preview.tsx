@@ -11,11 +11,19 @@ type PreviewProps = {
   workExperience: WorkExperienceType[];
 };
 
-const Preview = (props: PreviewProps) => {
-  console.log(props);
+const Preview = ({
+  personalInformation,
+  education,
+  workExperience,
+}: PreviewProps) => {
+  const { fname, lname, address, email, description, phoneNumer, title } =
+    personalInformation;
   return (
     <div>
-      <h1>Preview</h1>
+      <h1>
+        {fname} {lname}
+      </h1>
+      <h3>{title}</h3>
     </div>
   );
 };

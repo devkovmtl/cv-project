@@ -8,6 +8,7 @@ type PersonalInformationProps = {
   email: string;
   phoneNumer: string;
   description: string;
+  title: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -19,6 +20,7 @@ function PersonalInformation({
   phoneNumer,
   description,
   handleChange,
+  title,
 }: PersonalInformationProps) {
   return (
     <form className='personal__information_form'>
@@ -35,6 +37,14 @@ function PersonalInformation({
         placeholder='Last Name'
         name='lname'
         value={lname}
+        handleChange={handleChange}
+        dataCategory='personalInformation'
+      />
+      <InputField
+        type='text'
+        placeholder='Title'
+        name='title'
+        value={title}
         handleChange={handleChange}
         dataCategory='personalInformation'
       />
