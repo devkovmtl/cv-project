@@ -11,6 +11,7 @@ import {
   Education,
   PersonalInformation,
   WorkExperience,
+  Preview,
 } from './components';
 import { getItemCategoryName } from './utils';
 import { itemName } from './enum';
@@ -187,93 +188,110 @@ class App extends Component {
         <header className=''>
           <h1>CV PROJECT</h1>
         </header>
+        {/* APP CONTAINER */}
+        <div className=''>
+          {/* FORM COLUMN */}
+          <div>
+            <div>
+              <SubHeader title='Personal Information' />
+              <PersonalInformation
+                fname={fname}
+                lname={lname}
+                address={address}
+                description={description}
+                email={email}
+                phoneNumer={phoneNumer}
+                handleChange={this.handleInputChange}
+              />
+            </div>
 
-        <div>
-          <SubHeader title='Personal Information' />
-          <PersonalInformation
-            fname={fname}
-            lname={lname}
-            address={address}
-            description={description}
-            email={email}
-            phoneNumer={phoneNumer}
-            handleChange={this.handleInputChange}
-          />
-        </div>
+            <div>
+              <SubHeader title='Work Experience' />
+              {workExperience.length === 0 && (
+                <button
+                  className='add_work_experience_btn'
+                  onClick={this.handleAddItem}
+                >
+                  ➕
+                </button>
+              )}
+              {workExperience.map(
+                ({ id, employer, position, taskDescription, until, from }) => {
+                  return (
+                    <div key={id} id={id} className='work-experience-container'>
+                      <WorkExperience
+                        employer={employer}
+                        position={position}
+                        taskDescription={taskDescription}
+                        from={from}
+                        until={until}
+                        handleChange={this.handleArrayInputChange}
+                      />
 
-        <div>
-          <SubHeader title='Work Experience' />
-          {workExperience.length === 0 && (
-            <button
-              className='add_work_experience_btn'
-              onClick={this.handleAddItem}
-            >
-              ➕
-            </button>
-          )}
-          {workExperience.map(
-            ({ id, employer, position, taskDescription, until, from }) => {
-              return (
-                <div key={id} id={id} className='work-experience-container'>
-                  <WorkExperience
-                    employer={employer}
-                    position={position}
-                    taskDescription={taskDescription}
-                    from={from}
-                    until={until}
-                    handleChange={this.handleArrayInputChange}
-                  />
+                      <button
+                        className='add_work_experience_btn'
+                        onClick={this.handleAddItem}
+                      >
+                        ➕
+                      </button>
+                      <button
+                        className='delete_work_experience_btn'
+                        onClick={this.handleDeleteItem}
+                      >
+                        ❌
+                      </button>
+                    </div>
+                  );
+                }
+              )}
+            </div>
 
-                  <button
-                    className='add_work_experience_btn'
-                    onClick={this.handleAddItem}
-                  >
-                    ➕
-                  </button>
-                  <button
-                    className='delete_work_experience_btn'
-                    onClick={this.handleDeleteItem}
-                  >
-                    ❌
-                  </button>
-                </div>
-              );
-            }
-          )}
-        </div>
-
-        <div>
-          <SubHeader title='Education' />
-          {education.length === 0 && (
-            <button className='add_education_btn' onClick={this.handleAddItem}>
-              ➕
-            </button>
-          )}
-          {education.map(({ id, until, from, degree, schoolName }) => {
-            return (
-              <div key={id} id={id}>
-                <Education
-                  degree={degree}
-                  schoolName={schoolName}
-                  from={from}
-                  until={until}
-                  handleChange={this.handleArrayInputChange}
-                />
+            <div>
+              <SubHeader title='Education' />
+              {education.length === 0 && (
                 <button
                   className='add_education_btn'
                   onClick={this.handleAddItem}
                 >
                   ➕
                 </button>
-                <button
-                  className='delete_education_btn'
-                  onClick={this.handleDeleteItem}
-                >
-                  ❌
-                </button>
-              </div>
-            );
-          })}
+              )}
+              {education.map(({ id, until, from, degree, schoolName }) => {
+                return (
+                  <div key={id} id={id}>
+                    <Education
+                      degree={degree}
+                      schoolName={schoolName}
+                      from={from}
+                      until={until}
+                      handleChange={this.handleArrayInputChange}
+                    />
+                    <button
+                      className='add_education_btn'
+                      onClick={this.handleAddItem}
+                    >
+                      ➕
+                    </button>
+                    <button
+                      className='delete_education_btn'
+                      onClick={this.handleDeleteItem}
+                    >
+                      ❌
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* PREVIEW COLUMN */}
+          <div>
+            <Preview
+              personalInformation={this.state.personalInformation}
+              education={this.state.education}
+              workExperience={this.state.workExperience}
+            />
+          </div>
         </div>
       </div>
     );
