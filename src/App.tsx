@@ -13,7 +13,7 @@ import {
   WorkExperience,
   Preview,
 } from './components';
-import { getItemCategoryName } from './utils';
+import { getItemCategoryName, generateFakeResume } from './utils';
 import { itemName } from './enum';
 
 const initialState = {
@@ -34,26 +34,47 @@ class App extends Component {
   readonly state: AppState = initialState;
 
   componentDidMount() {
-    const educationId = uuidv4();
-    const workId = uuidv4();
-    this.setState((prevState: AppState) => ({
-      ...prevState,
-      education: prevState.education.concat({
-        id: educationId,
-        degree: '',
-        schoolName: '',
-        from: '',
-        until: '',
-      }),
-      workExperience: prevState.workExperience.concat({
-        id: workId,
-        position: '',
-        employer: '',
-        taskDescription: '',
-        from: '',
-        until: '',
-      }),
-    }));
+    const { personalInformation, education, workExperience } = this.state;
+    const fakeData = generateFakeResume();
+
+    this.setState((prevState: AppState) => {
+      return {
+        ...prevState,
+        personalInformation: {
+          ...personalInformation,
+          fname: fakeData.personalInformation.randomFirstName,
+          lname: fakeData.personalInformation.randomLastName,
+          address: fakeData.personalInformation.randomAddress,
+          phoneNumer: fakeData.personalInformation.randomPhone,
+          email: fakeData.personalInformation.randomEmail,
+          description: fakeData.personalInformation.randomDescription,
+          title: fakeData.personalInformation.randomJobTitle,
+        },
+        workExperience: [
+          ...prevState.workExperience.concat(
+            fakeData.workExperience.map((e) => ({
+              id: uuidv4(),
+              position: e.randomPosition,
+              employer: e.randomEmployer,
+              from: e.randomFrom,
+              until: e.randomUntil,
+              taskDescription: e.randomJobDescription,
+            }))
+          ),
+        ],
+        education: [
+          ...prevState.education.concat(
+            fakeData.education.map((e) => ({
+              id: uuidv4(),
+              degree: e.randomDegree,
+              schoolName: e.randomSchoolName,
+              from: e.randomFrom,
+              until: e.randomUntil,
+            }))
+          ),
+        ],
+      };
+    });
   }
 
   handleAddItem = (e: React.MouseEvent<HTMLElement>) => {
@@ -189,6 +210,7 @@ class App extends Component {
         title,
       },
     } = this.state;
+
     return (
       <div className='min-h-screen bg-slate-100'>
         <header className='text-6xl font-bold uppercase text-center py-8'>

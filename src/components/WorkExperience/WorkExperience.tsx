@@ -41,7 +41,7 @@ function WorkExperience({
       />
 
       <InputField
-        type='text'
+        type='date'
         placeholder='From'
         name='from'
         value={from}
@@ -50,7 +50,7 @@ function WorkExperience({
       />
 
       <InputField
-        type='text'
+        type='date'
         placeholder='Until'
         name='until'
         value={until}

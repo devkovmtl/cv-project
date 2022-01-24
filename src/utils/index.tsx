@@ -1,5 +1,6 @@
 import React from 'react';
 import { itemName } from '../enum';
+export { generateFakeResume } from './genarateFakeData';
 
 export function getItemCategoryName(
   e: React.MouseEvent<HTMLElement>
