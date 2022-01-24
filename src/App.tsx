@@ -196,6 +196,19 @@ class App extends Component {
     }
   };
 
+  collapseCard = (e: React.MouseEvent<HTMLElement>) => {
+    let allSiblings = [];
+    const target = e.target as Element;
+    let current = target.nextElementSibling;
+
+    while (current) {
+      allSiblings.push(current);
+      current = current.nextElementSibling;
+    }
+    console.log(allSiblings);
+    allSiblings.forEach((el) => el.classList.toggle(`hidden`));
+  };
+
   render() {
     const {
       education,
@@ -220,8 +233,14 @@ class App extends Component {
         <div className='flex flex-col lg:flex-row lg:justify-evenly '>
           {/* FORM COLUMN */}
           <div>
-            <div className='card-form'>
+            <div className='card-form relative'>
               <SubHeader title='Personal Information' />
+              <button
+                className='absolute top-2 right-2 border-2 border-black p-1'
+                onClick={this.collapseCard}
+              >
+                -
+              </button>
               <PersonalInformation
                 fname={fname}
                 lname={lname}
@@ -234,8 +253,9 @@ class App extends Component {
               />
             </div>
 
-            <div className='card-form'>
+            <div className='card-form relative'>
               <SubHeader title='Work Experience' />
+
               {workExperience.length === 0 && (
                 <button
                   className='add_work_experience_btn'
@@ -244,6 +264,12 @@ class App extends Component {
                   ➕
                 </button>
               )}
+              <button
+                className='absolute top-2 right-2 border-2 border-black p-1'
+                onClick={this.collapseCard}
+              >
+                -
+              </button>
               {workExperience.map(
                 ({ id, employer, position, taskDescription, until, from }) => {
                   return (
@@ -275,7 +301,7 @@ class App extends Component {
               )}
             </div>
 
-            <div className='card-form'>
+            <div className='card-form relative'>
               <SubHeader title='Education' />
               {education.length === 0 && (
                 <button
@@ -285,6 +311,12 @@ class App extends Component {
                   ➕
                 </button>
               )}
+              <button
+                className='absolute top-2 right-2 border-2 border-black p-1'
+                onClick={this.collapseCard}
+              >
+                -
+              </button>
               {education.map(({ id, until, from, degree, schoolName }) => {
                 return (
                   <div key={id} id={id} className=''>
