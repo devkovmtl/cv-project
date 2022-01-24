@@ -25,7 +25,7 @@ function InputField({
       name={name}
       value={value}
       onChange={handleChange}
-      className='w-full my-1 max-w-md rounded-md'
+      className='input'
       data-category={dataCategory}
       rows={3}
     />
@@ -36,7 +36,7 @@ function InputField({
       name={name}
       value={value}
       onChange={handleChange}
-      className='w-full my-1 max-w-md rounded-md'
+      className='input'
       data-category={dataCategory}
     />
   );

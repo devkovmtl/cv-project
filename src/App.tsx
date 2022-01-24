@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { BiChevronDown } from 'react-icons/bi';
+import { IoAddOutline } from 'react-icons/io5';
+import { MdOutlineDelete } from 'react-icons/md';
+
 import {
   AppState,
   EducationType,
@@ -117,16 +121,16 @@ class App extends Component {
   };
 
   handleDeleteItem = (e: React.MouseEvent<HTMLElement>) => {
-    const catgegoryName = getItemCategoryName(e);
-    const parentId = (e.target as Element).parentElement?.id;
-    if (catgegoryName === itemName.education) {
+    const categoryName = getItemCategoryName(e);
+    const parentId = (e.target as Element).parentElement?.parentElement?.id;
+    if (categoryName === itemName.education) {
       this.setState((prevState: AppState) => ({
         ...prevState,
         education: [...prevState.education.filter((el) => el.id !== parentId)],
       }));
     }
 
-    if (catgegoryName === itemName.workExperience) {
+    if (categoryName === itemName.workExperience) {
       this.setState((prevState: AppState) => ({
         ...prevState,
         workExperience: [
@@ -198,8 +202,10 @@ class App extends Component {
   };
 
   collapseCard = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     let allSiblings = [];
     const target = e.target as Element;
+    console.log(target);
     let current = target.nextElementSibling;
 
     while (current) {
@@ -230,15 +236,15 @@ class App extends Component {
           <h1>Resume Maker</h1>
         </header>
         {/* APP CONTAINER */}
-        <div className='flex flex-col lg:flex-row lg:justify-evenly '>
+        <div className='flex flex-col items-start justify-center lg:flex-row lg:items-start lg:justify-center'>
           {/* FORM COLUMN */}
-          <div>
-            <div className='card-form relative'>
+          <div className='w-full flex flex-col justify-center items-center lg:ml-11 lg:max-w-md'>
+            <div className='card card-form relative'>
               <SubHeader title='Personal Information' />
               <Button
                 handleClick={this.collapseCard}
-                children={'-'}
-                classList='collapseButton'
+                children={<BiChevronDown fontSize={24} />}
+                classList='button collapse-button'
               />
               <PersonalInformation
                 fname={fname}
@@ -252,25 +258,30 @@ class App extends Component {
               />
             </div>
 
-            <div className='card-form relative'>
+            <div className='card card-form relative'>
               <SubHeader title='Work Experience' />
 
               {workExperience.length === 0 && (
                 <Button
-                  classList='add_work_experience_btn'
-                  children='➕'
+                  classList='add-work-experience-button text-green-700'
+                  children={<IoAddOutline />}
                   handleClick={this.handleAddItem}
+                  data-category='workExperience'
                 />
               )}
               <Button
                 handleClick={this.collapseCard}
-                children={'-'}
-                classList='collapseButton'
+                children={<BiChevronDown fontSize={'20px'} />}
+                classList='button collapse-button'
               />
               {workExperience.map(
                 ({ id, employer, position, taskDescription, until, from }) => {
                   return (
-                    <div key={id} id={id} className='work-experience-container'>
+                    <div
+                      key={id}
+                      id={id}
+                      className='work-experience-container mb-2'
+                    >
                       <WorkExperience
                         employer={employer}
                         position={position}
@@ -279,40 +290,45 @@ class App extends Component {
                         until={until}
                         handleChange={this.handleArrayInputChange}
                       />
-                      <Button
-                        classList='add_work_experience_btn'
-                        children='➕'
-                        handleClick={this.handleAddItem}
-                      />
+                      <div className='flex my-2'>
+                        <Button
+                          classList='add-work-experience-button button text-green-700'
+                          children={<IoAddOutline />}
+                          handleClick={this.handleAddItem}
+                          data-category='workExperience'
+                        />
 
-                      <Button
-                        classList='delete_work_experience_btn'
-                        children='❌'
-                        handleClick={this.handleDeleteItem}
-                      />
+                        <Button
+                          classList='delete-work-experience-button button text-red-700'
+                          children={<MdOutlineDelete />}
+                          handleClick={this.handleDeleteItem}
+                          data-category='workExperience'
+                        />
+                      </div>
                     </div>
                   );
                 }
               )}
             </div>
 
-            <div className='card-form relative'>
+            <div className='card card-form relative'>
               <SubHeader title='Education' />
               {education.length === 0 && (
                 <Button
-                  classList='add_work_experience_btn'
-                  children='➕'
+                  classList='add-education-button button text-green-700'
+                  children={<IoAddOutline />}
                   handleClick={this.handleAddItem}
+                  data-category='education'
                 />
               )}
               <Button
                 handleClick={this.collapseCard}
-                children={'-'}
-                classList='collapseButton'
+                children={<BiChevronDown fontSize={'20px'} />}
+                classList='button collapse-button'
               />
               {education.map(({ id, until, from, degree, schoolName }) => {
                 return (
-                  <div key={id} id={id} className=''>
+                  <div key={id} id={id} className='mb-2'>
                     <Education
                       degree={degree}
                       schoolName={schoolName}
@@ -320,17 +336,21 @@ class App extends Component {
                       until={until}
                       handleChange={this.handleArrayInputChange}
                     />
-                    <Button
-                      classList='add_work_experience_btn'
-                      children='➕'
-                      handleClick={this.handleAddItem}
-                    />
+                    <div className='flex my-2'>
+                      <Button
+                        classList='add-education-button button text-green-700'
+                        children={<IoAddOutline />}
+                        handleClick={this.handleAddItem}
+                        data-category='education'
+                      />
 
-                    <Button
-                      classList='delete_education_btn'
-                      children='❌'
-                      handleClick={this.handleDeleteItem}
-                    />
+                      <Button
+                        classList='delete-education-button button text-red-700'
+                        children={<MdOutlineDelete />}
+                        handleClick={this.handleDeleteItem}
+                        data-category='education'
+                      />
+                    </div>
                   </div>
                 );
               })}
@@ -338,7 +358,7 @@ class App extends Component {
           </div>
 
           {/* PREVIEW COLUMN */}
-          <div className='card-preview'>
+          <div className='w-full flex items-center justify-center'>
             <Preview
               personalInformation={this.state.personalInformation}
               education={this.state.education}

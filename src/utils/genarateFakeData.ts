@@ -9,7 +9,7 @@ const generateFakePersonalInfo = () => {
     randomAddress: faker.address.streetAddress(),
     randomEmail: faker.internet.email(),
     randomPhone: faker.phone.phoneNumber(),
-    randomDescription: faker.lorem.paragraph(),
+    randomDescription: faker.lorem.paragraph(2),
   };
 };
 
@@ -21,7 +21,7 @@ const generateFakeWorkExperience = (from: string, until: string) => {
     // randomFrom: faker.date.
     randomFrom: f.toLocaleDateString(),
     randomUntil: u.toLocaleDateString(),
-    randomJobDescription: faker.lorem.paragraph(),
+    randomJobDescription: faker.lorem.paragraph(2),
   };
 };
 

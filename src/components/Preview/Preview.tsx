@@ -1,4 +1,6 @@
 import React from 'react';
+import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
   PersonalInformationType,
   EducationType,
@@ -19,7 +21,7 @@ const Preview = ({
   const { fname, lname, address, email, description, phoneNumer, title } =
     personalInformation;
   return (
-    <div className='max-w-4xl p-16 flex flex-col'>
+    <div className='card card-preview max-w-4xl p-16 flex flex-col'>
       {/* Header - Name - Title Job - Description */}
       <div className='mb-16'>
         {/* img */}
@@ -44,12 +46,18 @@ const Preview = ({
         <div className='min-w-[120px]'>
           <div>
             <p>Personal Details</p>
-            <p>{address}</p>
+            <p>
+              <HiOutlineLocationMarker /> {address}
+            </p>
           </div>
           <div>
             <p>Contact</p>
-            <p>{email}</p>
-            <p>{phoneNumer}</p>
+            <p>
+              <AiOutlineMail /> {email}
+            </p>
+            <p>
+              <AiOutlinePhone /> {phoneNumer}
+            </p>
           </div>
         </div>
 

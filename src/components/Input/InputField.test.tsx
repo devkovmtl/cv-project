@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InputField from './InputField';
 
-describe('<Input />', () => {
+describe.skip('<Input />', () => {
   test('should render the input', () => {
     const handler = jest.fn();
     render(

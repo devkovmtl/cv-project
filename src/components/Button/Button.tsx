@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type ButtonProps = {
   handleClick: (e: React.MouseEvent<HTMLElement>) => void;
-  children: string;
+  children: ReactElement | string;
   classList: string;
 };
 
