@@ -19,17 +19,23 @@ const Preview = ({
   const { fname, lname, address, email, description, phoneNumer, title } =
     personalInformation;
   return (
-    <div className='p-16 flex flex-col'>
+    <div className='max-w-4xl p-16 flex flex-col'>
       {/* Header - Name - Title Job - Description */}
-      <div className='mb-16 ml-[120px]'>
-        <div>
-          <h1 className='text-6xl font-extrabold text-blue-500'>
-            {fname} {lname}
-          </h1>
-          <h3 className='text-4xl font-semibold text-gray-400'>{title}</h3>
-        </div>
-        <div>
-          <p>{description}</p>
+      <div className='mb-16'>
+        {/* img */}
+        <div className='min-w-[120px]'></div>
+
+        {/* */}
+        <div className='ml-[120px]'>
+          <div>
+            <h1 className='text-6xl font-extrabold text-blue-500'>
+              {fname} {lname}
+            </h1>
+            <h3 className='text-4xl font-semibold text-gray-400'>{title}</h3>
+          </div>
+          <div>
+            <p>{description}</p>
+          </div>
         </div>
       </div>
       {/* Info - Personal details, work and Education  */}

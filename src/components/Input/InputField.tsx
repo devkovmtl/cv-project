@@ -27,6 +27,7 @@ function InputField({
       onChange={handleChange}
       className='w-full my-1 max-w-md rounded-md'
       data-category={dataCategory}
+      rows={3}
     />
   ) : (
     <input
