@@ -12,6 +12,7 @@ import {
   PersonalInformation,
   WorkExperience,
   Preview,
+  Button,
 } from './components';
 import { getItemCategoryName, generateFakeResume } from './utils';
 import { itemName } from './enum';
@@ -51,7 +52,7 @@ class App extends Component {
           title: fakeData.personalInformation.randomJobTitle,
         },
         workExperience: [
-          ...prevState.workExperience.concat(
+          ...workExperience.concat(
             fakeData.workExperience.map((e) => ({
               id: uuidv4(),
               position: e.randomPosition,
@@ -63,7 +64,7 @@ class App extends Component {
           ),
         ],
         education: [
-          ...prevState.education.concat(
+          ...education.concat(
             fakeData.education.map((e) => ({
               id: uuidv4(),
               degree: e.randomDegree,
@@ -205,7 +206,6 @@ class App extends Component {
       allSiblings.push(current);
       current = current.nextElementSibling;
     }
-    console.log(allSiblings);
     allSiblings.forEach((el) => el.classList.toggle(`hidden`));
   };
 
@@ -235,12 +235,11 @@ class App extends Component {
           <div>
             <div className='card-form relative'>
               <SubHeader title='Personal Information' />
-              <button
-                className='absolute top-2 right-2 border-2 border-black p-1'
-                onClick={this.collapseCard}
-              >
-                -
-              </button>
+              <Button
+                handleClick={this.collapseCard}
+                children={'-'}
+                classList='collapseButton'
+              />
               <PersonalInformation
                 fname={fname}
                 lname={lname}
@@ -257,19 +256,17 @@ class App extends Component {
               <SubHeader title='Work Experience' />
 
               {workExperience.length === 0 && (
-                <button
-                  className='add_work_experience_btn'
-                  onClick={this.handleAddItem}
-                >
-                  ➕
-                </button>
+                <Button
+                  classList='add_work_experience_btn'
+                  children='➕'
+                  handleClick={this.handleAddItem}
+                />
               )}
-              <button
-                className='absolute top-2 right-2 border-2 border-black p-1'
-                onClick={this.collapseCard}
-              >
-                -
-              </button>
+              <Button
+                handleClick={this.collapseCard}
+                children={'-'}
+                classList='collapseButton'
+              />
               {workExperience.map(
                 ({ id, employer, position, taskDescription, until, from }) => {
                   return (
@@ -282,19 +279,17 @@ class App extends Component {
                         until={until}
                         handleChange={this.handleArrayInputChange}
                       />
+                      <Button
+                        classList='add_work_experience_btn'
+                        children='➕'
+                        handleClick={this.handleAddItem}
+                      />
 
-                      <button
-                        className='add_work_experience_btn'
-                        onClick={this.handleAddItem}
-                      >
-                        ➕
-                      </button>
-                      <button
-                        className='delete_work_experience_btn'
-                        onClick={this.handleDeleteItem}
-                      >
-                        ❌
-                      </button>
+                      <Button
+                        classList='delete_work_experience_btn'
+                        children='❌'
+                        handleClick={this.handleDeleteItem}
+                      />
                     </div>
                   );
                 }
@@ -304,19 +299,17 @@ class App extends Component {
             <div className='card-form relative'>
               <SubHeader title='Education' />
               {education.length === 0 && (
-                <button
-                  className='add_education_btn'
-                  onClick={this.handleAddItem}
-                >
-                  ➕
-                </button>
+                <Button
+                  classList='add_work_experience_btn'
+                  children='➕'
+                  handleClick={this.handleAddItem}
+                />
               )}
-              <button
-                className='absolute top-2 right-2 border-2 border-black p-1'
-                onClick={this.collapseCard}
-              >
-                -
-              </button>
+              <Button
+                handleClick={this.collapseCard}
+                children={'-'}
+                classList='collapseButton'
+              />
               {education.map(({ id, until, from, degree, schoolName }) => {
                 return (
                   <div key={id} id={id} className=''>
@@ -327,18 +320,17 @@ class App extends Component {
                       until={until}
                       handleChange={this.handleArrayInputChange}
                     />
-                    <button
-                      className='add_education_btn'
-                      onClick={this.handleAddItem}
-                    >
-                      ➕
-                    </button>
-                    <button
-                      className='delete_education_btn'
-                      onClick={this.handleDeleteItem}
-                    >
-                      ❌
-                    </button>
+                    <Button
+                      classList='add_work_experience_btn'
+                      children='➕'
+                      handleClick={this.handleAddItem}
+                    />
+
+                    <Button
+                      classList='delete_education_btn'
+                      children='❌'
+                      handleClick={this.handleDeleteItem}
+                    />
                   </div>
                 );
               })}

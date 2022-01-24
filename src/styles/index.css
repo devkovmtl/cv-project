@@ -16,10 +16,14 @@ body {
 
 @layer components {
   .card-form {
-    @apply mb-4 px-6 pt-8 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg sm:max-w-md sm:px-10;
+    @apply mb-3 px-2 pt-6 pb-6 bg-white shadow-xl ring-1 ring-gray-900/5 rounded-lg sm:max-w-md sm:px-10;
   }
 
   .card-preview {
     @apply mb-4 px-6 pt-8 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 min-w-[760px] rounded-lg;
+  }
+
+  .collapseButton {
+    @apply absolute top-2 right-2 border-2 border-red-400 p-1;
   }
 }
