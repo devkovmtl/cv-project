@@ -21,41 +21,46 @@ const Preview = ({
   const { fname, lname, address, email, description, phoneNumer, title } =
     personalInformation;
   return (
-    <div className='card card-preview max-w-4xl p-16 flex flex-col'>
+    <div className='card card-preview '>
       {/* Header - Name - Title Job - Description */}
-      <div className='mb-16'>
+      <div className='mb-8 sm:mb-16'>
         {/* img */}
-        <div className='min-w-[120px]'></div>
+        <div className='hidden sm:block md:min-w-[240px]'></div>
 
         {/* */}
-        <div className='ml-[120px]'>
-          <div>
-            <h1 className='text-6xl font-extrabold text-blue-500'>
+        <div className='sm:ml-[240px] sm:pt-8 space-y-2 sm:space-y-4'>
+          <div className='space-y-2 sm:space-y-4'>
+            <h1 className='text-4xl sm:text-6xl font-extrabold text-blue-500'>
               {fname} {lname}
             </h1>
-            <h3 className='text-4xl font-semibold text-gray-400'>{title}</h3>
+            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-500'>
+              {title}
+            </h3>
           </div>
           <div>
-            <p>{description}</p>
+            <p className='text-lg sm:text-xl font-normal text-gray-400'>
+              {description}
+            </p>
           </div>
         </div>
       </div>
       {/* Info - Personal details, work and Education  */}
-      <div className='flex'>
+      <div className='flex flex-col sm:flex-row'>
         {/* Personal Details - Contact*/}
-        <div className='min-w-[120px]'>
-          <div>
-            <p>Personal Details</p>
-            <p>
-              <HiOutlineLocationMarker /> {address}
+        <div className='sm:min-w-[240px]'>
+          <div className='mb-3'>
+            <p className='title-personal-info'>Personal Details</p>
+            <p className='flex items-center font-light text-md'>
+              <HiOutlineLocationMarker />
+              {address}
             </p>
           </div>
-          <div>
-            <p>Contact</p>
-            <p>
+          <div className='mb-3'>
+            <p className='title-personal-info'>Contact</p>
+            <p className='flex items-center font-light text-md'>
               <AiOutlineMail /> {email}
             </p>
-            <p>
+            <p className='flex items-center font-light text-md'>
               <AiOutlinePhone /> {phoneNumer}
             </p>
           </div>
@@ -64,31 +69,39 @@ const Preview = ({
         {/* Work and Education */}
         <div>
           {/* Work Experience */}
-          <div>
-            <h3>Work Experience</h3>
+          <div className='mb-6 sm:mb-10 space-y-3'>
+            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-700'>
+              Work Experience
+            </h3>
             {workExperience.map((el) => (
-              <div key={el.id} id={el.id}>
-                <p>{el.position}</p>
-                <p>
+              <div key={el.id} id={el.id} className='mb-2'>
+                <p className='text-xl sm:text-2xl font-bold text-black'>
+                  {el.position}
+                </p>
+                <p className='text-base sm:text-lg font-medium flex justify-between'>
                   {el.employer}{' '}
-                  <span>
+                  <span className='text-sm text-gray-400'>
                     {el.from}-{el.until}
                   </span>
                 </p>
-                <p>{el.taskDescription}</p>
+                <p className='text-base sm:text-lg font-normal text-gray-400'>
+                  {el.taskDescription}
+                </p>
               </div>
             ))}
           </div>
 
           {/* Education */}
           <div>
-            <h3>Education</h3>
+            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-700'>
+              Education
+            </h3>
             {education.map((el) => (
-              <div key={el.id} id={el.id}>
-                <p>{el.degree}</p>
-                <p>
+              <div key={el.id} id={el.id} className='mb-2'>
+                <p className='text-base sm:text-lg font-medium'>{el.degree}</p>
+                <p className='text-base sm:text-lg font-normal  flex justify-between'>
                   {el.schoolName}
-                  <span>
+                  <span className='text-sm text-gray-400'>
                     {el.from}-{el.until}
                   </span>
                 </p>

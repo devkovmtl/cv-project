@@ -205,7 +205,6 @@ class App extends Component {
     e.preventDefault();
     let allSiblings = [];
     const target = e.target as Element;
-    console.log(target);
     let current = target.nextElementSibling;
 
     while (current) {
@@ -238,7 +237,7 @@ class App extends Component {
         {/* APP CONTAINER */}
         <div className='flex flex-col items-start justify-center lg:flex-row lg:items-start lg:justify-center'>
           {/* FORM COLUMN */}
-          <div className='w-full flex flex-col justify-center items-center lg:ml-11 lg:max-w-md'>
+          <div className='w-full flex flex-col pb-6 justify-center items-center lg:ml-11 lg:max-w-md'>
             <div className='card card-form relative'>
               <SubHeader title='Personal Information' />
               <Button
@@ -263,7 +262,7 @@ class App extends Component {
 
               {workExperience.length === 0 && (
                 <Button
-                  classList='add-work-experience-button text-green-700'
+                  classList='add-work-experience-button button text-green-700'
                   children={<IoAddOutline />}
                   handleClick={this.handleAddItem}
                   data-category='workExperience'

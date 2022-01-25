@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   width: 100%;
+  min-width: 380px;
 }
 
 svg {
@@ -28,18 +29,22 @@ svg {
   }
 
   .card-preview {
-    @apply w-80 sm:w-[820px] md:min-h-[975px];
+    @apply w-80 sm:w-[820px] md:min-h-[975px] px-5 py-7 sm:p-10 sm:pb-20;
   }
 
   .button {
-    @apply w-8 h-8 flex items-center justify-center border-2 rounded-md p-2 shadow-lg;
+    @apply w-8 h-8 flex items-center justify-center border-2 rounded-md p-2 shadow-lg hover:bg-gray-200 hover:transition-all;
   }
 
   .collapse-button {
-    @apply absolute top-2 right-2 text-blue-700 hover:bg-gray-200 hover:transition-all;
+    @apply absolute top-2 right-2 text-blue-700;
   }
 
   .input {
     @apply mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 invalid:border-red-500 invalid:text-red-600;
+  }
+
+  .title-personal-info {
+    @apply text-base sm:text-lg font-medium text-gray-500;
   }
 }
