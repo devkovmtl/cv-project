@@ -4,7 +4,7 @@ const generateFakePersonalInfo = () => {
   return {
     randomLastName: faker.name.lastName(),
     randomFirstName: faker.name.firstName(),
-    // randomPicture: faker.image.avatar(),
+    randomPicture: faker.image.avatar(),
     randomJobTitle: faker.name.jobTitle(),
     randomAddress: faker.address.streetAddress(),
     randomEmail: faker.internet.email(),

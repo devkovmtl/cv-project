@@ -49,6 +49,7 @@ class App extends Component {
           ...personalInformation,
           fname: fakeData.personalInformation.randomFirstName,
           lname: fakeData.personalInformation.randomLastName,
+          avatar: fakeData.personalInformation.randomPicture,
           address: fakeData.personalInformation.randomAddress,
           phoneNumer: fakeData.personalInformation.randomPhone,
           email: fakeData.personalInformation.randomEmail,
@@ -231,7 +232,7 @@ class App extends Component {
 
     return (
       <div className='min-h-screen bg-slate-100'>
-        <header className='text-6xl font-bold uppercase text-center py-8'>
+        <header className='text-6xl font-bold uppercase text-center py-12'>
           <h1>Resume Maker</h1>
         </header>
         {/* APP CONTAINER */}

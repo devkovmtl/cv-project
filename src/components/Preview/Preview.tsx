@@ -33,12 +33,12 @@ const Preview = ({
             <h1 className='text-4xl sm:text-6xl font-extrabold text-blue-500'>
               {fname} {lname}
             </h1>
-            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-500'>
+            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-600'>
               {title}
             </h3>
           </div>
           <div>
-            <p className='text-lg sm:text-xl font-normal text-gray-400'>
+            <p className='text-lg sm:text-xl font-normal text-gray-500'>
               {description}
             </p>
           </div>
@@ -70,14 +70,12 @@ const Preview = ({
         <div>
           {/* Work Experience */}
           <div className='mb-6 sm:mb-10 space-y-3'>
-            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-700'>
+            <h3 className='text-2xl font-semibold text-gray-600'>
               Work Experience
             </h3>
             {workExperience.map((el) => (
               <div key={el.id} id={el.id} className='mb-2'>
-                <p className='text-xl sm:text-2xl font-bold text-black'>
-                  {el.position}
-                </p>
+                <p className='text-xl font-bold text-black'>{el.position}</p>
                 <p className='text-base sm:text-lg font-medium flex justify-between'>
                   {el.employer}{' '}
                   <span className='text-sm text-gray-400'>
@@ -93,13 +91,11 @@ const Preview = ({
 
           {/* Education */}
           <div>
-            <h3 className='text-2xl sm:text-4xl font-semibold text-gray-700'>
-              Education
-            </h3>
+            <h3 className='text-2xl  font-semibold text-gray-600'>Education</h3>
             {education.map((el) => (
               <div key={el.id} id={el.id} className='mb-2'>
                 <p className='text-base sm:text-lg font-medium'>{el.degree}</p>
-                <p className='text-base sm:text-lg font-normal  flex justify-between'>
+                <p className='text-base sm:text-lg font-normal flex justify-between text-gray-500'>
                   {el.schoolName}
                   <span className='text-sm text-gray-400'>
                     {el.from}-{el.until}
