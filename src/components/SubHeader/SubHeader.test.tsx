@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import SubHeader from './SubHeader';
 
-describe.skip('<SubHeader />', () => {
+describe('<SubHeader />', () => {
   test('should render the input', () => {
     render(<SubHeader title='Test' />);
     const h2Element = screen.getByText('Test');

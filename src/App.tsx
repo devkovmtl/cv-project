@@ -296,6 +296,7 @@ class App extends Component {
                           children={<IoAddOutline />}
                           handleClick={this.handleAddItem}
                           data-category='workExperience'
+                          dataTestId='add-work-experience-button'
                         />
 
                         <Button
@@ -303,6 +304,7 @@ class App extends Component {
                           children={<MdOutlineDelete />}
                           handleClick={this.handleDeleteItem}
                           data-category='workExperience'
+                          dataTestId='delete-work-experience-button'
                         />
                       </div>
                     </div>
@@ -342,6 +344,7 @@ class App extends Component {
                         children={<IoAddOutline />}
                         handleClick={this.handleAddItem}
                         data-category='education'
+                        dataTestId='add-education-button'
                       />
 
                       <Button
@@ -349,6 +352,7 @@ class App extends Component {
                         children={<MdOutlineDelete />}
                         handleClick={this.handleDeleteItem}
                         data-category='education'
+                        dataTestId='delete-education-button'
                       />
                     </div>
                   </div>

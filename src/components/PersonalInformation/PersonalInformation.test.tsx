@@ -2,10 +2,23 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import PersonalInformation from './PersonalInformation';
 
-describe.skip('<PersonalInformation />', () => {
+describe('<PersonalInformation />', () => {
   test('should render', () => {
-    // render(<PersonalInformation />);
-    // const headerElement = screen.getByText(/Personal Information/i);
-    // expect(headerElement).toBeInTheDocument();
+    const handler = jest.fn();
+    render(
+      <PersonalInformation
+        fname='fName'
+        lname='lName'
+        address='Some address'
+        email='some@email.com'
+        phoneNumer='123-456-6987'
+        description='some description'
+        title='some title'
+        handleChange={handler}
+      />
+    );
+
+    const inputNameElement = screen.getByPlaceholderText('First Name');
+    expect(inputNameElement).toBeInTheDocument();
   });
 });

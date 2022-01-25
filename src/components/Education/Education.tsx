@@ -49,7 +49,7 @@ function Education({
 
       <InputField
         type='date'
-        placeholder='until'
+        placeholder='Until'
         name='until'
         value={until}
         handleChange={handleChange}
